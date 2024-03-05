@@ -15,12 +15,17 @@ export default function TextForm(props) {
     }
 
     return (
-        <div>
-            <h1>{props.heading}</h1>
-            <div className="mb-3">
-                <textarea className="form-control" id="myBox" onChange= {handleOnChange} value = {text} rows="8">Enter your text here...</textarea>
+        <>
+            <div className="container">
+                <h1>{props.heading}</h1>
+                <div className="mb-3">
+                    <textarea className="form-control" id="myBox" onChange= {handleOnChange} value = {text} rows="8">Enter your text here...</textarea>
+                </div>
+                <button className="btn btn-primary" onClick={handleOnClick} >Convert to uppercase</button>
             </div>
-            <button className="btn btn-primary" onClick={handleOnClick} >Convert to uppercase</button>
-        </div>
+            <div className="container mb-3">Your text summary</div>
+            <p>{text.split("").length} words and {text.length} character</p>
+            <p>{0.008 * text.split(" ").length} minutes needed</p>
+        </>
     )
 }
