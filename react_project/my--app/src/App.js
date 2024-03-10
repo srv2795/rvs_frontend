@@ -5,6 +5,12 @@ import About from './components/About';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
 
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+} from "react-router-dom";
+
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
@@ -43,15 +49,18 @@ function App() {
   }
 
   return (
-    <>
-      <Navbar title="My second app " about="about us" mode={mode} toggleMode = {toggleMode} />
-      <Alert alert = {alert}/>
-      <About />
-      <div className="container mb-3">
-        <about/>
-        <TextForm showAlert={showAlert} heading="Enter the text to analyse"/>
-      </div>
-    </>
+    
+      <BrowserRouter>
+        <Navbar title="My second app " about="about us" mode={mode} toggleMode = {toggleMode} />
+        <Alert alert = {alert}/>
+        <div className="container mb-3">
+          <Routes>
+            <Route path="/tfm" element={<TextForm showAlert={showAlert} heading="Enter the text to analyse"/>} />
+            <Route path="/abt" element={<About/>} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+  
   );
 }
 
